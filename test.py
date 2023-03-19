@@ -5,9 +5,15 @@ import pickle
 import aicrowd_gym
 import minerl
 
+import cv2
+import os
+import numpy as np
+
 from config import EVAL_EPISODES, EVAL_MAX_STEPS
 from openai_vpt.agent import MineRLAgent
 
+EVAL_MAX_STEPS = 18000 #Overwrite max steps to play for 15 minutes
+EVAL_EPISODES = 1 #overwrite episodes
 coloredlogs.install(logging.DEBUG)
 
 MINERL_GYM_ENV = 'MineRLObtainDiamondShovel-v0'
@@ -31,6 +37,8 @@ def main():
     for i in range(EVAL_EPISODES):
         obs = env.reset()
         agent.reset()
+        frameSize = (640,360)
+        output = cv2.VideoWriter(r"P:\Programming\MineRL\basalt-2022-intro-track-baseline\frames\output.avi", cv2.VideoWriter_fourcc('M','J','P','G'), 20, frameSize)
         for step_counter in range(EVAL_MAX_STEPS):
 
             # Step your model here.
@@ -39,9 +47,15 @@ def main():
             obs, reward, done, info = env.step(minerl_action)
 
             # Uncomment the line below to see the agent in action:
-            # env.render()
+            image=env.render()
+            #print(type(image))
+            #print(image.shape)
+            #image = obs["pov"]
+            image = image[..., ::-1] #fix RGB
+            output.write(image)
 
             if done:
+                output.release()
                 break
         print(f"[{i}] Episode complete")
 

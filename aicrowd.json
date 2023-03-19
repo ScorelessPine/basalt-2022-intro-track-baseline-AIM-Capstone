@@ -4,6 +4,6 @@
   "description": "Baseline Model for MineRL BASALT Challenge Intro Track",
   "licence": "MIT",
   "gpu": true,
-  "debug": true,
+  "debug": false,
   "track": "intro"
 }
