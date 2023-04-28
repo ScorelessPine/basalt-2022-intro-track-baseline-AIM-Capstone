@@ -41,3 +41,7 @@ This will run a single short episode. If you want to see complete episodes, set 
 To submit this baseline agent follow the [submission instructions](https://github.com/minerllabs/basalt_intro_track_2022_competition_submission_template), but use this repo instead of the starter kit repo.
 
 Remember to add the newly added model files as part of the submission!
+
+## Capstone Video
+
+Per the AI Capstone Project that this baseline submission was completed for, shown here is a 15-minute video of the model and weights being played: https://youtu.be/Ptj4IEiW_wQ
